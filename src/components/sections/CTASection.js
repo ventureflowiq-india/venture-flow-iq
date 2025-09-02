@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Users, TrendingUp, Shield } from 'lucide-react';
 
 const CTASection = () => {
+  const navigate = useNavigate();
+  
   const benefits = [
     {
       icon: Users,
@@ -52,11 +55,17 @@ const CTASection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-          <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center min-w-[200px]">
+          <button 
+            onClick={() => navigate('/signup')}
+            className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center min-w-[200px]"
+          >
             Start Free Trial
             <ArrowRight className="h-5 w-5 ml-2" />
           </button>
-          <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center min-w-[200px]">
+          <button 
+            onClick={() => navigate('/contact')}
+            className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center min-w-[200px]"
+          >
             Schedule Demo
             <ArrowRight className="h-5 w-5 ml-2" />
           </button>

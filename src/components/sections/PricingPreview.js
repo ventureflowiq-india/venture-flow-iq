@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Star } from 'lucide-react';
 
 const PricingPreview = () => {
+  const navigate = useNavigate();
+  
   const plans = [
     {
       name: "Freemium",
@@ -15,7 +18,8 @@ const PricingPreview = () => {
       ],
       buttonText: "Get Started",
       buttonStyle: "border border-blue-600 text-blue-600 hover:bg-blue-50",
-      popular: false
+      popular: false,
+      onClick: () => navigate('/signup')
     },
     {
       name: "Premium",
@@ -33,7 +37,8 @@ const PricingPreview = () => {
       buttonText: "Start Free Trial",
       buttonStyle: "bg-white text-blue-600 hover:bg-gray-50",
       popular: true,
-      bgColor: "bg-blue-600 text-white"
+      bgColor: "bg-blue-600 text-white",
+      onClick: () => navigate('/signup')
     },
     {
       name: "Enterprise",
@@ -49,7 +54,8 @@ const PricingPreview = () => {
       ],
       buttonText: "Contact Sales",
       buttonStyle: "border border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600",
-      popular: false
+      popular: false,
+      onClick: () => navigate('/contact')
     }
   ];
 
@@ -116,7 +122,10 @@ const PricingPreview = () => {
                   ))}
                 </ul>
                 
-                <button className={`w-full py-3 rounded-lg font-semibold transition-colors mt-auto ${plan.buttonStyle}`}>
+                <button 
+                  onClick={plan.onClick}
+                  className={`w-full py-3 rounded-lg font-semibold transition-colors mt-auto ${plan.buttonStyle}`}
+                >
                   {plan.buttonText}
                 </button>
               </div>
@@ -128,7 +137,10 @@ const PricingPreview = () => {
           <p className="text-gray-600 mb-4">
             All plans include 14-day free trial • No credit card required
           </p>
-          <button className="text-blue-600 hover:text-blue-700 font-medium">
+          <button 
+            onClick={() => navigate('/solutions')}
+            className="text-blue-600 hover:text-blue-700 font-medium"
+          >
             View Detailed Pricing →
           </button>
         </div>
