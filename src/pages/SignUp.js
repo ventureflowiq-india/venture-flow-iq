@@ -380,13 +380,13 @@ const SignUp = () => {
               />
               <label htmlFor="accept-terms" className="ml-2 block text-sm text-gray-900">
                 I agree to the{' '}
-                <button type="button" className="text-blue-600 hover:text-blue-500 underline">
+                <Link to="/terms-of-use" className="text-blue-600 hover:text-blue-500 underline">
                   Terms of Service
-                </button>{' '}
+                </Link>{' '}
                 and{' '}
-                <button type="button" className="text-blue-600 hover:text-blue-500 underline">
+                <Link to="/privacy-policy" className="text-blue-600 hover:text-blue-500 underline">
                   Privacy Policy
-                </button>
+                </Link>
               </label>
             </div>
 
