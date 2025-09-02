@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Building2, ChevronDown, Menu, X, Users, Settings, CreditCard, Activity, Star, LogOut, LayoutDashboard, BarChart3 } from 'lucide-react';
+import { Building2, ChevronDown, Menu, X, Users, Settings, CreditCard, Activity, Star, LogOut, LayoutDashboard, BarChart3, Mail } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Header = ({ isLoggedIn = false, user = null, onLogin, onLogout }) => {
