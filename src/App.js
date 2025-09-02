@@ -20,6 +20,7 @@ import WatchlistPage from './pages/WatchlistPage';
 import ActivityPage from './pages/ActivityPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
+import AdminContactMessages from './pages/AdminContactMessages';
 import EditCompanyPage from './pages/EditCompanyPage';
 import PlanBilling from './pages/PlanBilling';
 import MarketAnalysis from './pages/MarketAnalysis';
@@ -133,6 +134,14 @@ function AppRoutes() {
       <Route path="/about" element={<About />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
+      <Route 
+        path="/admin/contact-messages" 
+        element={
+          <ProtectedRoute>
+            <AdminContactMessages />
+          </ProtectedRoute>
+        } 
+      />
       
       {/* Catch all route */}
       <Route path="*" element={<Navigate to="/" />} />

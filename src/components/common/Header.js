@@ -176,6 +176,16 @@ const Header = ({ isLoggedIn = false, user = null, onLogin, onLogout }) => {
                           Compare
                         </Link>
                       )}
+                      {user?.role?.toUpperCase() === 'ADMIN' && (
+                        <Link
+                          to="/admin/contact-messages"
+                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                          onClick={() => setIsUserDropdownOpen(false)}
+                        >
+                          <Mail className="h-4 w-4 mr-3" />
+                          Contact Messages
+                        </Link>
+                      )}
                       <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
                         <Settings className="h-4 w-4 mr-3" />
                         Settings
@@ -274,6 +284,15 @@ const Header = ({ isLoggedIn = false, user = null, onLogin, onLogout }) => {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Compare
+                  </Link>
+                )}
+                {user?.role?.toUpperCase() === 'ADMIN' && (
+                  <Link
+                    to="/admin/contact-messages"
+                    className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact Messages
                   </Link>
                 )}
               </div>

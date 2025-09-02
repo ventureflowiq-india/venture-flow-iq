@@ -4,6 +4,7 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useUserProfile } from '../hooks/useUserProfile';
+import { contactService } from '../lib/contactService';
 import { 
   Mail, 
   Phone, 
@@ -47,28 +48,45 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
+    setMessage({ type: '', text: '' });
     
-    // Simulate form submission
-    setTimeout(() => {
-      setMessage({ 
-        type: 'success', 
-        text: 'Thank you for your message! We\'ll get back to you within 24 hours.' 
-      });
-      setSending(false);
+    try {
+      // Submit the form using the contact service
+      const result = await contactService.submitContactForm(formData, user?.id);
       
-      // Clear form after success
-      setTimeout(() => {
-        setMessage({ type: '', text: '' });
-        setFormData({
-          name: userProfile.name || '',
-          email: userProfile.email || '',
-          company: '',
-          phone: '',
-          message: '',
-          inquiryType: 'sales'
+      if (result.success) {
+        setMessage({ 
+          type: 'success', 
+          text: result.message 
         });
-      }, 3000);
-    }, 2000);
+        
+        // Clear form after success
+        setTimeout(() => {
+          setMessage({ type: '', text: '' });
+          setFormData({
+            name: userProfile.name || '',
+            email: userProfile.email || '',
+            company: '',
+            phone: '',
+            message: '',
+            inquiryType: 'sales'
+          });
+        }, 3000);
+      } else {
+        setMessage({ 
+          type: 'error', 
+          text: result.error || 'Failed to send message. Please try again.' 
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setMessage({ 
+        type: 'error', 
+        text: 'An unexpected error occurred. Please try again.' 
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
